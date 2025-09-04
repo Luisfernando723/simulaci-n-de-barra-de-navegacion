@@ -1,0 +1,195 @@
+/* Fondo animado y fuente moderna */
+body {
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    animation: fondoAnimado 12s ease-in-out infinite alternate;
+}
+
+@keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Título destacado con animación y subrayado */
+.titulo-navegador {
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #305a8d;
+    margin-top: 48px;
+    margin-bottom: 28px;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 12px #b3c6e6;
+    position: relative;
+    animation: fadeInDown 1.2s;
+}
+
+.titulo-navegador::after {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #4078c0 60%, #305a8d 100%);
+    border-radius: 2px;
+    margin-top: 12px;
+    opacity: 0.7;
+}
+
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-40px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+/* Contenedor principal con sombra y animación */
+.search-bar-container {
+    max-width: 440px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.95);
+    border-radius: 22px;
+    box-shadow: 0 12px 36px rgba(44, 62, 80, 0.18);
+    padding: 36px 32px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    animation: fadeInUp 1.2s;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(40px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+/* Agrupa input y botón en una fila */
+.search-bar-row {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+/* Ajusta input y botón para que se vean bien juntos */
+.search-bar {
+    flex: 1;
+    padding: 15px 20px;
+    border: 1.5px solid #dfe4ea;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #f7f9fa;
+    color: #222;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
+    margin-bottom: 0;
+}
+
+.search-bar:focus {
+    border-color: #4078c0;
+    background: #eef4fb;
+    box-shadow: 0 4px 16px rgba(64, 120, 192, 0.10);
+}
+
+/* Botón de búsqueda con icono y animación */
+.search-button {
+    background: linear-gradient(90deg, #4078c0 60%, #305a8d 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0 18px;
+    height: 48px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+    outline: none;
+    animation: pulse 2s infinite;
+    position: relative;
+    color: #fff;
+    font-size: 1.15rem;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1);}
+    50% { transform: scale(1.07);}
+    100% { transform: scale(1);}
+}
+
+.search-button:hover {
+    background: linear-gradient(90deg, #305a8d 60%, #4078c0 100%);
+    transform: scale(1.08);
+}
+
+.search-button::before {
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white" stroke-width="2"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+/* Lista de sugerencias bien alineada y sin viñetas */
+.suggestions-list {
+    position: absolute;
+    top: 54px;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    z-index: 10;
+    display: none;
+    font-size: 1.05rem;
+    border: 1px solid #e3eafc;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #b3c6e6;
+    background: #fff;
+    animation: fadeInList 0.5s;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    word-break: break-word;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+@keyframes fadeInList {
+    0% { opacity: 0; transform: translateY(-10px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+.suggestions-list.active {
+    display: block;
+}
+
+.suggestions-list li {
+    padding: 13px 20px;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, transform 0.18s;
+    color: #305a8d;
+    animation: fadeInList 0.5s;
+    border-bottom: 1px solid #f0f4fa;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.suggestions-list li:last-child {
+    border-bottom: none;
+}
+
+.suggestions-list li:hover {
+    background: #eaf0fb;
+    color: #222;
+    transform: scale(1.03);
+}
